@@ -9,6 +9,6 @@ public interface Dicionario extends Remote {
 	
 	public String adicionar(Verbete verbete) throws RemoteException;
 	
-	public String remover() throws RemoteException;
+	public String remover(String palavra) throws RemoteException;
 
 }

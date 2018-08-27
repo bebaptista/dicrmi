@@ -8,12 +8,17 @@ public class DicionarioServer {
 				Dicionario d = new DicionarioServant();
 				Naming.rebind("rmi://localhost/DicionarioService", d);
 			} catch (Exception e) {
-				System.out.println(e);
+				System.err.println(e);
 			}
 		}
 
 		public static void main(String args[]) {
-			new DicionarioServer();
+			DicionarioServer ds = new DicionarioServer();
+			ds.carregaDicionario();
 			System.out.println("Servidor Dicionario em execução.");
+		}
+		
+		public void carregaDicionario(){
+			
 		}
 }
