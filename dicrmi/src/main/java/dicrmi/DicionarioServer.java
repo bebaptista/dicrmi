@@ -14,11 +14,7 @@ public class DicionarioServer {
 
 		public static void main(String args[]) {
 			DicionarioServer ds = new DicionarioServer();
-			ds.carregaDicionario();
 			System.out.println("Servidor Dicionario em execução.");
 		}
-		
-		public void carregaDicionario(){
-			
-		}
+
 }
