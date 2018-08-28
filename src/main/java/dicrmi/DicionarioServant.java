@@ -30,16 +30,17 @@ public class DicionarioServant extends UnicastRemoteObject implements Dicionario
 			return "Palavra nao encontrada";
 		}
 		catch (Exception e){
-			
+			return "Palavra nao encontrada";			
 		}
 	}
 
 	public String adicionar(Verbete verbete) throws RemoteException {
 		try{
 			dic.add(verbete);
+			return null;
 		}
 		catch(Exception e){
-			
+			return null;
 		}
 	}
 
@@ -54,7 +55,7 @@ public class DicionarioServant extends UnicastRemoteObject implements Dicionario
 			return "Palavra nao encontrada";
 		}
 		catch(Exception e){
-			
+			return null;
 		}
 	}
 
