@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import br.com.puc.dicrmi.server.model.Verbete;
+import br.com.puc.dicrmi.server.remote.Dicionario;
 
 public class DicionarioGrafico extends JFrame{
 	
@@ -16,11 +17,13 @@ public class DicionarioGrafico extends JFrame{
 	private JTextField palavra, significado;
 	private JButton botaoConsultar, botaoAdd, botaoRemove, botaoLimpa;
 	private JPanel panel;
+	private Dicionario dicionario;
 	
-	public DicionarioGrafico(){
+	public DicionarioGrafico(Dicionario dicionario){
 		super("Dicionario");
+		this.dicionario = dicionario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+				
 		palavra = new JTextField(20);
 		significado = new JTextField(200);
 		
@@ -44,7 +47,7 @@ public class DicionarioGrafico extends JFrame{
 		pack();
 		
 		botaoConsultar.addActionListener((e)->processaConsultar());
-		botaoAdd.addActionListener((e)->processaAdicionar());
+		botaoAdd.addActionListener(e->processaAdicionar());
 		botaoRemove.addActionListener((e)->processaRemover());
 		botaoLimpa.addActionListener((e)->processaLimpar());
 	}

@@ -8,15 +8,15 @@ import java.rmi.RemoteException;
 import br.com.puc.dicrmi.server.remote.Dicionario;
 
 public class DicionarioClient {
-	public static void main(String[] args){
-		DicionarioGrafico dg = new DicionarioGrafico();
-		dg.setVisible(true);
+	public static void main(String... args) {
 		String servidor = "rmi://localhost/";
 		String nome = "DicionarioService";
 		try {
 			Dicionario d = (Dicionario) Naming.lookup(servidor + nome);
-			System.out.println("Objeto remoto \'"+ nome + "\' encontrado no servidor.");
-			
+			DicionarioGrafico dg = new DicionarioGrafico(d);
+			dg.setVisible(true);
+			System.out.println("Objeto remoto \'" + nome + "\' encontrado no servidor.");
+
 		} catch (MalformedURLException e) {
 			System.out.println("URL \'" + servidor + nome + "\' mal formatada.");
 		} catch (RemoteException e) {
