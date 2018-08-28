@@ -1,7 +1,9 @@
-package dicrmi;
+package br.com.puc.dicrmi.server.remote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import br.com.puc.dicrmi.server.model.Verbete;
 
 public interface Dicionario extends Remote {
 	

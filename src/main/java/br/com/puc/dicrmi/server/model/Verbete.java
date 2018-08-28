@@ -1,4 +1,4 @@
-package dicrmi;
+package br.com.puc.dicrmi.server.model;
 
 public class Verbete {
 

@@ -1,11 +1,11 @@
-package dicrmi;
+package br.com.puc.dicrmi.client;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-//package dicrmi;
+import br.com.puc.dicrmi.server.remote.Dicionario;
 
 public class DicionarioClient {
 	public static void main(String[] args){

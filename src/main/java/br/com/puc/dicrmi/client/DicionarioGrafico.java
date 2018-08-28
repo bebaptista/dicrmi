@@ -1,4 +1,4 @@
-package dicrmi;
+package br.com.puc.dicrmi.client;
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import br.com.puc.dicrmi.server.model.Verbete;
 
 public class DicionarioGrafico extends JFrame{
 	
