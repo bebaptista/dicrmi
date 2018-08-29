@@ -46,39 +46,31 @@ public class DicionarioGrafico extends JFrame{
 		c.add(panel);
 		pack();
 		
-		botaoConsultar.addActionListener((e)->processaConsultar());
-		botaoAdd.addActionListener(e->processaAdicionar());
-		botaoRemove.addActionListener((e)->processaRemover());
+		botaoConsultar.addActionListener((e)->processaConsultar(dicionario));
+		botaoAdd.addActionListener(e->processaAdicionar(dicionario));
+		botaoRemove.addActionListener((e)->processaRemover(dicionario));
 		botaoLimpa.addActionListener((e)->processaLimpar());
 	}
 
-	private Object processaLimpar() {
+	private void processaLimpar() {
 		palavra.setText("");
 		significado.setText("");
-		setCurrent(null);
-		return null;
 	}
 
-	private Verbete processaAdicionar() {
+	private void processaAdicionar(Dicionario dicionario) {
 		Verbete v = new Verbete();
 		v.setPalavra(palavra.getText());
 		v.setSignificado(significado.getText());
-		setCurrent(v);
-		return null;
+		significado.setText(dicionario.adicionar(v));
 	}
 
-	private Object processaRemover() {
-		Verbete v = new Verbete();
-		v.setPalavra(palavra.getText());
-		setCurrent(v);
-		return null;
+	private void processaRemover(Dicionario dicionario) {
+		String s = palavra.getText();
+		significado.setText(dicionario.remover(s));
 	}
 
-	private String processaConsultar() {
-		Verbete v = new Verbete();
-		v.setPalavra(palavra.getText());
-		setCurrent(v);
-		return null;
+	private void processaConsultar(Dicionario dicionario) {
+		significado.setText(dicionario.consultar(palavra.getText()));
 	}
 
 	public JTextField getPalavra() {
