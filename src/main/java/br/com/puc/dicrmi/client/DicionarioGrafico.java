@@ -13,6 +13,12 @@ import javax.swing.JTextField;
 import br.com.puc.dicrmi.server.model.Verbete;
 import br.com.puc.dicrmi.server.remote.Dicionario;
 
+/**
+ * 
+ * Classe que constroi a interface grafica
+ *
+ */
+
 public class DicionarioGrafico extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -59,7 +65,9 @@ public class DicionarioGrafico extends JFrame {
 		botaoRemove.addActionListener(e -> processaRemover(dicionario));
 		botaoLimpa.addActionListener(e -> processaLimpar());
 	}
-
+	/**
+	 * Metodo que limpa os campos de texto da interface ao clicar no botão
+	 */
 	private void processaLimpar() {
 		palavra.setText("");
 		significado.setText("");
@@ -68,7 +76,10 @@ public class DicionarioGrafico extends JFrame {
 	private boolean isPalavraEmpty() {
 		return palavra.getText().isEmpty();
 	}
-
+	/**
+	 * Metodo que adiciona a palavra e seu significado escritos nos campos de texto da interface ao dicionario pelo clique do botão
+	 * @param dicionario
+	 */
 	private void processaAdicionar(Dicionario dicionario) {
 		try {
 			if (!isPalavraEmpty() && !significado.getText().isEmpty()) {
@@ -81,7 +92,10 @@ public class DicionarioGrafico extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Metodo que remove a palavra escrita no campo de texto da interface do dicionario ao clicar no botão
+	 * @param dicionario
+	 */
 	private void processaRemover(Dicionario dicionario) {
 		try {
 			if (!isPalavraEmpty()) {
@@ -92,7 +106,10 @@ public class DicionarioGrafico extends JFrame {
 			// TODO: handle exception
 		}
 	}
-
+	/**
+	 * Metodo que consulta e retorna um significado de uma palavra escrita no campo de texto da interface ao clicar no botão
+	 * @param dicionario
+	 */
 	private void processaConsultar(Dicionario dicionario) {
 		try {
 			if (!isPalavraEmpty()) {
