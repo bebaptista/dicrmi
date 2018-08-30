@@ -87,6 +87,8 @@ public class DicionarioGrafico extends JFrame {
 				verbete.setPalavra(palavra.getText());
 				verbete.setSignificado(significado.getText());
 				significado.setText(dicionario.adicionar(verbete));
+				palavra.setText("");
+				significado.setText("");
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -101,6 +103,7 @@ public class DicionarioGrafico extends JFrame {
 			if (!isPalavraEmpty()) {
 				String s = palavra.getText();
 				significado.setText(dicionario.remover(s));
+				palavra.setText("");
 			}
 		} catch (RemoteException e) {
 			// TODO: handle exception
