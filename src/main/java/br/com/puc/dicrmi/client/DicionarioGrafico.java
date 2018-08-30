@@ -13,12 +13,8 @@ import br.com.puc.dicrmi.server.model.Verbete;
 import br.com.puc.dicrmi.server.remote.Dicionario;
 
 public class DicionarioGrafico extends JFrame {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	private Verbete current;
 	private JTextField palavra, significado;
 	private JButton botaoConsultar, botaoAdd, botaoRemove, botaoLimpa;
 	private JPanel panel;
@@ -152,13 +148,5 @@ public class DicionarioGrafico extends JFrame {
 
 	public void setPanel(JPanel panel) {
 		this.panel = panel;
-	}
-
-	public Verbete getCurrent() {
-		return current;
-	}
-
-	public void setCurrent(Verbete current) {
-		this.current = current;
 	}
 }
