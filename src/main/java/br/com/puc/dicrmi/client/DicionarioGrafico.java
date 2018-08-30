@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,9 +16,10 @@ import br.com.puc.dicrmi.server.remote.Dicionario;
 public class DicionarioGrafico extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private JTextField palavra, significado, retorno;
+	private JTextField palavra, significado;
+	private JLabel labelPalavra;
 	private JButton botaoConsultar, botaoAdd, botaoRemove, botaoLimpa;
-	private JPanel panelleft, panelright;
+	private JPanel panelLeft, panelRight;
 
 	public DicionarioGrafico(Dicionario dicionario) {
 		super("Dicionario");
@@ -25,29 +27,31 @@ public class DicionarioGrafico extends JFrame {
 
 		palavra = new JTextField(20);
 		significado = new JTextField(200);
-		retorno = new JTextField(200);
+		
+		labelPalavra = new JLabel("Palavra",JLabel.CENTER);
 
 		botaoConsultar = new JButton("Consultar");
 		botaoAdd = new JButton("Adicionar");
 		botaoRemove = new JButton("Remover");
 		botaoLimpa = new JButton("Limpar");
 
-		panelleft = new JPanel();
-		panelright = new JPanel();
-		panelleft.setLayout(new GridLayout(3, 1));
-		panelright.setLayout(new GridLayout(4, 1));
+		panelLeft = new JPanel();
+		panelRight = new JPanel();
+		panelLeft.setLayout(new GridLayout(5, 0));
+		panelRight.setLayout(new GridLayout(4, 0));
 
-		panelleft.add(palavra);
-		panelleft.add(significado);
-		panelleft.add(retorno);
-		panelright.add(botaoConsultar);
-		panelright.add(botaoAdd);
-		panelright.add(botaoRemove);
-		panelright.add(botaoLimpa);
+		panelLeft.add(palavra);
+		panelLeft.add(labelPalavra);
+		panelLeft.add(significado);
+		panelRight.add(botaoConsultar);
+		panelRight.add(botaoAdd);
+		panelRight.add(botaoRemove);
+		panelRight.add(botaoLimpa);
 
 		Container c = getContentPane();
-		c.add(panelleft);
-		c.add(panelright);
+		c.setLayout(new GridLayout(0,2));
+		c.add(panelLeft);
+		c.add(panelRight);
 		pack();
 
 		botaoConsultar.addActionListener(e -> processaConsultar(dicionario));
@@ -59,7 +63,6 @@ public class DicionarioGrafico extends JFrame {
 	private void processaLimpar() {
 		palavra.setText("");
 		significado.setText("");
-		retorno.setText("");
 	}
 
 	private boolean isPalavraEmpty() {
@@ -68,11 +71,11 @@ public class DicionarioGrafico extends JFrame {
 
 	private void processaAdicionar(Dicionario dicionario) {
 		try {
-			if (!isPalavraEmpty() || significado.getText().isEmpty()) {
+			if (!isPalavraEmpty() && !significado.getText().isEmpty()) {
 				Verbete verbete = new Verbete();
 				verbete.setPalavra(palavra.getText());
 				verbete.setSignificado(significado.getText());
-				retorno.setText(dicionario.adicionar(verbete));
+				significado.setText(dicionario.adicionar(verbete));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -83,7 +86,7 @@ public class DicionarioGrafico extends JFrame {
 		try {
 			if (!isPalavraEmpty()) {
 				String s = palavra.getText();
-				retorno.setText(dicionario.remover(s));
+				significado.setText(dicionario.remover(s));
 			}
 		} catch (RemoteException e) {
 			// TODO: handle exception
@@ -148,11 +151,19 @@ public class DicionarioGrafico extends JFrame {
 		this.botaoLimpa = botaoLimpa;
 	}
 
-	public JPanel getPanel() {
-		return panel;
+	public JPanel getPanelLeft() {
+		return panelLeft;
 	}
 
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
+	public void setPanelLeft(JPanel panelLeft) {
+		this.panelLeft = panelLeft;
+	}
+	
+	public JPanel getPanelRight() {
+		return panelRight;
+	}
+
+	public void setPanelRight(JPanel panelRight) {
+		this.panelRight = panelRight;
 	}
 }
