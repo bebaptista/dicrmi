@@ -15,9 +15,9 @@ import br.com.puc.dicrmi.server.remote.Dicionario;
 public class DicionarioGrafico extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private JTextField palavra, significado;
+	private JTextField palavra, significado, retorno;
 	private JButton botaoConsultar, botaoAdd, botaoRemove, botaoLimpa;
-	private JPanel panel;
+	private JPanel panelleft, panelright;
 
 	public DicionarioGrafico(Dicionario dicionario) {
 		super("Dicionario");
@@ -25,24 +25,29 @@ public class DicionarioGrafico extends JFrame {
 
 		palavra = new JTextField(20);
 		significado = new JTextField(200);
+		retorno = new JTextField(200);
 
 		botaoConsultar = new JButton("Consultar");
 		botaoAdd = new JButton("Adicionar");
 		botaoRemove = new JButton("Remover");
 		botaoLimpa = new JButton("Limpar");
 
-		panel = new JPanel();
-		panel.setLayout(new GridLayout(2, 2));
+		panelleft = new JPanel();
+		panelright = new JPanel();
+		panelleft.setLayout(new GridLayout(3, 1));
+		panelright.setLayout(new GridLayout(4, 1));
 
-		panel.add(palavra);
-		panel.add(significado);
-		panel.add(botaoConsultar);
-		panel.add(botaoAdd);
-		panel.add(botaoRemove);
-		panel.add(botaoLimpa);
+		panelleft.add(palavra);
+		panelleft.add(significado);
+		panelleft.add(retorno);
+		panelright.add(botaoConsultar);
+		panelright.add(botaoAdd);
+		panelright.add(botaoRemove);
+		panelright.add(botaoLimpa);
 
 		Container c = getContentPane();
-		c.add(panel);
+		c.add(panelleft);
+		c.add(panelright);
 		pack();
 
 		botaoConsultar.addActionListener(e -> processaConsultar(dicionario));
@@ -54,6 +59,7 @@ public class DicionarioGrafico extends JFrame {
 	private void processaLimpar() {
 		palavra.setText("");
 		significado.setText("");
+		retorno.setText("");
 	}
 
 	private boolean isPalavraEmpty() {
@@ -66,7 +72,7 @@ public class DicionarioGrafico extends JFrame {
 				Verbete verbete = new Verbete();
 				verbete.setPalavra(palavra.getText());
 				verbete.setSignificado(significado.getText());
-				significado.setText(dicionario.adicionar(verbete));
+				retorno.setText(dicionario.adicionar(verbete));
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -77,7 +83,7 @@ public class DicionarioGrafico extends JFrame {
 		try {
 			if (!isPalavraEmpty()) {
 				String s = palavra.getText();
-				significado.setText(dicionario.remover(s));
+				retorno.setText(dicionario.remover(s));
 			}
 		} catch (RemoteException e) {
 			// TODO: handle exception
